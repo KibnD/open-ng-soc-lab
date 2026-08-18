@@ -1,0 +1,35 @@
+name: Detection proposal
+description: Propose an evidence-backed detection use case.
+title: "[Detection]: "
+labels: ["detection", "triage"]
+body:
+  - type: input
+    id: data_source
+    attributes:
+      label: Data source
+    validations:
+      required: true
+  - type: input
+    id: mitre
+    attributes:
+      label: MITRE ATT&CK mapping or no-mapping rationale
+    validations:
+      required: true
+  - type: textarea
+    id: positive
+    attributes:
+      label: Positive test
+    validations:
+      required: true
+  - type: textarea
+    id: negative
+    attributes:
+      label: Meaningful negative test
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety, cleanup, and rollback
+    validations:
+      required: true

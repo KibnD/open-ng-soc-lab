@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Citation metadata is provisional until the first authorized release."
+title: "Open NG-SOC Lab"
+type: software
+authors:
+  - family-names: "FAQIR"
+    given-names: "Khalid"
+version: 0.0.0-dev
+abstract: "An educational, evidence-driven open detection-and-response laboratory blueprint."

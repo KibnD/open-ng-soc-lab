@@ -1,0 +1,44 @@
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Private/raw evidence and exports
+quarantine/
+evidence/raw/
+*.evtx
+*.pcap
+*.pcapng
+*.vmdk
+*.ova
+*.ovf
+*.iso
+*.dump
+*.bak
+
+# Logs, databases, indexes, and generated data
+*.log
+*.sqlite*
+data/
+volumes/
+opensearch-data/
+
+# Tool and editor output
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated validation output
+build/
+dist/
+reports/generated/
