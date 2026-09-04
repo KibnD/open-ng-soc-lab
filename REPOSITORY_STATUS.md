@@ -35,6 +35,7 @@ On 2026-09-04, the official Python 3.13.15 Windows embeddable runtime was downlo
 - Three unreachable local blobs: individually scanned through Gitleaks stdin, zero findings.
 - actionlint 1.7.12: PASS for `.github/workflows/ci.yml`.
 - Repository structure: no tags, submodules, symlinks, or unexpectedly large files found.
+- Clean local clone of commit `3b5dece`: both validators and all 15 unit tests PASS; clone remained clean.
 - Wazuh integration tests: not run; exact audited XML and powered lab are unavailable.
 
 ## Release gates
