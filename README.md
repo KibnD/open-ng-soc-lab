@@ -55,7 +55,7 @@ The diagram is deliberately generic. See [architecture documentation](docs/archi
 | 100051 | Priority 1–2 Suricata alert | 8 | Signature-dependent | `tested-private` |
 | 100052 | Windows event-log clearing | 12 | T1070.001 | `tested-private` |
 | 100053 | Synthetic CloudTrail `CreateAccessKey` | 12 | T1098.001 | `simulated` |
-| 100054 | Addition to Domain Admins | 14 | T1098 | `tested-private` |
+| 100054 | Addition to Domain Admins | 14 | T1098.007 — Additional Local or Domain Groups | `tested-private` |
 | 100055 | Successful RC4 Kerberos service ticket | 12 | T1558.003 | `tested-private` |
 | 100056 | Audited privileged Docker launch | 12 | T1611 | `tested-private` |
 | 100057 | Five failed network logons from one source | 10 | T1110.001 | `tested-private` |
