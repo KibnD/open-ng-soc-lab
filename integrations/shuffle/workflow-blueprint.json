@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "template_status": "manual-build-blueprint",
+  "name": "Open NG-SOC MISP enrichment",
+  "description": "Sanitized design contract for Wazuh alert enrichment and notification.",
+  "start": "wazuh_webhook",
+  "configuration": [
+    {"name":"MISP_URL","secret":false,"required":true},
+    {"name":"MISP_API_KEY","secret":true,"required":true},
+    {"name":"MISP_CA_BUNDLE","secret":false,"required":false},
+    {"name":"SLACK_DESTINATION","secret":true,"required":true}
+  ],
+  "nodes": [
+    {"id":"wazuh_webhook","type":"webhook","action":"validate_payload","on_error":"invalid_payload"},
+    {"id":"extract_ioc","type":"transform","action":"extract_source_ip","on_error":"enrichment_error"},
+    {"id":"misp_lookup","type":"http","action":"post_attributes_restSearch","on_error":"enrichment_error"},
+    {"id":"match_decision","type":"condition","expression":"misp_match == true"},
+    {"id":"notify_match","type":"notification","template":"../slack/message-template.json"},
+    {"id":"record_no_match","type":"result","result":"no_match"},
+    {"id":"invalid_payload","type":"result","result":"rejected"},
+    {"id":"enrichment_error","type":"result","result":"unavailable"}
+  ],
+  "branches": [
+    {"from":"wazuh_webhook","to":"extract_ioc","when":"valid"},
+    {"from":"extract_ioc","to":"misp_lookup","when":"success"},
+    {"from":"misp_lookup","to":"match_decision","when":"success"},
+    {"from":"match_decision","to":"notify_match","when":"true"},
+    {"from":"match_decision","to":"record_no_match","when":"false"}
+  ],
+  "prohibited_export_fields": [
+    "authentication_id", "authorization", "webhook_id", "channel_id",
+    "execution_history", "org_id", "owner", "workflow_id"
+  ]
+}

@@ -1,0 +1,86 @@
+name: Static validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: static-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Compile Python sources
+        run: python -m compileall -q scripts tests
+
+      - name: Validate repository
+        run: python scripts/validate_repository.py
+
+      - name: Run validator unit tests
+        run: python -m unittest discover -s tests -v
+
+  powershell:
+    name: PowerShell validator
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Validate repository
+        shell: pwsh
+        run: ./scripts/validate_repository.ps1
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out complete history
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install checksum-pinned Gitleaks 8.30.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="gitleaks_8.30.0_linux_x64.tar.gz"
+          curl --fail --silent --show-error --location \
+            --output "$RUNNER_TEMP/$archive" \
+            "https://github.com/gitleaks/gitleaks/releases/download/v8.30.0/$archive"
+          echo "79a3ab579b53f71efd634f3aaf7e04a0fa0cf206b7ed434638d1547a2470a66e  $RUNNER_TEMP/$archive" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP" gitleaks
+
+      - name: Scan Git history
+        run: |
+          "$RUNNER_TEMP/gitleaks" git . --redact --no-banner
+
+      - name: Scan working tree
+        run: |
+          "$RUNNER_TEMP/gitleaks" dir . --redact --no-banner

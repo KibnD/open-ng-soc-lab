@@ -17,4 +17,12 @@ Describe the change and why it is needed.
 ## Validation
 
 - [ ] `python scripts/validate_repository.py` passes.
+- [ ] `python -m unittest discover -s tests -v` passes.
+- [ ] `pwsh -File scripts/validate_repository.ps1` passes.
 - [ ] Claims and MITRE mappings match the evidence.
+
+## Release impact
+
+- Evidence-state changes:
+- Compatibility or breaking changes:
+- Human decisions or lab verification still required:
