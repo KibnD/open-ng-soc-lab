@@ -1,0 +1,13 @@
+{
+  "text": "NG-SOC CTI match requires analyst review",
+  "blocks": [
+    {"type":"header","text":{"type":"plain_text","text":"NG-SOC CTI match — review required"}},
+    {"type":"section","fields":[
+      {"type":"mrkdwn","text":"*Rule*\n{{ rule.id }} — {{ rule.description }}"},
+      {"type":"mrkdwn","text":"*Agent*\n{{ agent.name }}"},
+      {"type":"mrkdwn","text":"*Source*\n{{ data.srcip }}"},
+      {"type":"mrkdwn","text":"*MISP match*\n{{ misp_match }}"}
+    ]},
+    {"type":"context","elements":[{"type":"mrkdwn","text":"Synthetic template. Validate CTI confidence before response."}]}
+  ]
+}

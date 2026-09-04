@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/open-ng-soc-lab/wazuh-alert.schema.json",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["timestamp", "rule", "agent", "data"],
+  "properties": {
+    "timestamp": {"type":"string","format":"date-time"},
+    "rule": {
+      "type":"object","required":["id","level","description"],
+      "properties": {
+        "id":{"type":"string","pattern":"^[0-9]+$"},
+        "level":{"type":"integer","minimum":0,"maximum":16},
+        "description":{"type":"string","minLength":1,"maxLength":500}
+      }
+    },
+    "agent": {
+      "type":"object","required":["id","name"],
+      "properties": {
+        "id":{"type":"string","pattern":"^[0-9]{3}$"},
+        "name":{"type":"string","minLength":1,"maxLength":100}
+      }
+    },
+    "data": {
+      "type":"object","required":["srcip"],
+      "properties":{"srcip":{"type":"string","format":"ipv4"}}
+    }
+  }
+}

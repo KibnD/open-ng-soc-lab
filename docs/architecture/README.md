@@ -1,23 +1,7 @@
-# Architecture
+# Architecture documentation
 
-The public architecture will describe generic trust zones and data flows without reproducing the private laboratory topology.
+- [Overview](overview.md): components, tested baseline, and boundaries.
+- [Data flows](data-flows.md): protocols, ports, and security limitations.
+- [Trust boundaries](trust-boundaries.md): zone assumptions and secret handling.
 
-```text
-Telemetry sources
-  -> collection and normalization
-  -> Wazuh detection and indexing
-  -> analyst investigation
-  -> optional CTI enrichment
-  -> optional SOAR notification/response
-```
-
-## Trust boundaries
-
-- Monitored endpoints and workloads.
-- Network security sensors and gateway.
-- Detection/indexing platform.
-- CTI and automation platform.
-- Analyst and administration interfaces.
-- External notification/API boundary.
-
-Exact deployment guidance remains pending clean-room reconstruction and validation.
+The public architecture uses generic names and documentation addresses. It describes the confirmed private-lab design without publishing original topology files, third-party logos, or company-branded material.

@@ -1,5 +1,11 @@
 # Runbooks
 
-Runbooks will be added only after the corresponding detection has sanitized fixtures and a reproducible expected result.
+Current analyst runbooks cover:
 
-Each runbook must separate triage, investigation, containment decision, recovery, evidence handling, escalation, and closure. Automated destructive response is out of scope for the initial release.
+- [Suricata alerts](suricata-alert.md)
+- [Suspicious PowerShell](suspicious-powershell.md)
+- [Privileged domain changes](privileged-domain-change.md)
+- [Kerberos RC4 tickets](kerberos-rc4.md)
+- [Privileged Docker launches](docker-privileged.md)
+
+They are guidance for controlled analysis, not automated containment. Each covers triage, evidence, false positives, escalation, reversible response, and recovery. Exact organization procedures must be reviewed locally.

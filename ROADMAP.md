@@ -9,13 +9,13 @@
 
 ## v0.2.0 — MISP enrichment
 
-- Publish a sanitized, configurable integration only after credential rotation and security review.
-- Add synthetic MISP responses and deterministic error-path tests.
+- Clean-room configurable client and deterministic synthetic error-path tests implemented.
+- Next: complete credential rotation, private-script comparison, and authorized MISP interoperability testing.
 
 ## v0.3.0 — Shuffle and Slack response
 
-- Rebuild a workflow template without authentication objects or identifiers.
-- Add a synthetic Wazuh webhook payload and generic Slack message template.
+- Sanitized manual-build blueprint, synthetic Wazuh payload, and generic Slack message implemented.
+- Next: build/export in a disposable Shuffle instance, sanitize, and prove import portability.
 
 ## v0.4.0 — Expanded coverage and dashboards
 

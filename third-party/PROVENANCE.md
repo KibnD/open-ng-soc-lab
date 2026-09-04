@@ -1,6 +1,6 @@
 # Third-Party Provenance Register
 
-No third-party file has been approved for redistribution in this staging repository.
+No third-party file has been approved for redistribution in this public pre-release repository.
 
 Before adding or adapting third-party material, record:
 

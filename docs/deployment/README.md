@@ -1,7 +1,13 @@
 # Deployment
 
-Deployment instructions are pending clean-environment reconstruction.
+The deployment guides describe the confirmed private-lab design and safe reconstruction requirements. They are not a one-command installer and have not yet been reproduced from a clean public environment.
 
-The first supported baseline will be Wazuh 4.8.2 because that is the validated private-lab version. Broader compatibility must be tested rather than assumed.
+1. Review [prerequisites](prerequisites.md) and allocate resources.
+2. Build the isolated network and firewall boundaries.
+3. Deploy and validate [Wazuh](wazuh.md).
+4. Configure [pfSense and Suricata](pfsense-suricata.md).
+5. Add endpoint agents and telemetry sources.
+6. Deploy [MISP](misp.md), then [Shuffle](shuffle.md), only after the detection core is healthy.
+7. Execute health checks before controlled simulations.
 
-No private addresses, domains, accounts, credentials, or full live configuration will be copied into this guide.
+Use unique credentials and trusted certificates. Never copy credentials, host identities, or backups from the private laboratory.

@@ -1,5 +1,12 @@
-# Simulations
+# Controlled simulations
 
-Simulations must be synthetic, controlled, reversible, and restricted to explicitly authorized isolated laboratories.
+These procedures are plans for an isolated lab and remain `documented-only` until their public fixtures and expected results are available. Read [safety controls](safety-and-cleanup.md) first.
 
-Every simulation must define prerequisites, scope, expected telemetry/detection, stop conditions, cleanup, rollback, and limitations. Malware, weaponized exploits, unsafe PCAPs, and real credentials are prohibited.
+| Procedure | Related rules | Method | State |
+|---|---|---|---|
+| [Synthetic CloudTrail](synthetic-cloudtrail.md) | 100053 | Local JSON event only | `simulated` privately |
+| [AD identity tests](ad-identity.md) | 100054, 100055, 100057 | Disposable disabled/test identities | `tested-private` |
+| [Container test](docker-privileged.md) | 100056 | No network, no mounts, `true` workload | `tested-private` |
+| [Network replay](network-replay.md) | 100051, 100100 | Sanitized log replay | `tested-private` |
+
+No malware, exploit delivery, credential theft, operational log clearing, unsafe PCAP, or real third-party targeting is required.

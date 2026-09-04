@@ -1,17 +1,18 @@
-# Detection Coverage Matrix
+# Detection coverage matrix
 
-Evidence state definitions:
+The [manifest](../../detections/tests/manifest.json) is authoritative. None is `reproduced-public` because exact XML and fixtures have not passed public Wazuh execution.
 
-- `tested-private`: validated in the private lab; public fixture/export pending.
-- `pending-export`: source or dependency has not entered sanitized staging.
-- `reproduced-public`: sanitized fixture passes the public test harness.
+| Rule | Data source | Level | ATT&CK | Evidence | Fixtures | Target |
+|---:|---|---:|---|---|---|---|
+| 100051 | Suricata EVE via pfSense | 8 | Signature-dependent | `tested-private` | Pending | v0.1.0 |
+| 100052 | Windows Security log | 12 | T1070.001 | `tested-private`; PT-05 NOT RUN | Pending synthetic fixtures | v0.1.0 |
+| 100053 | Synthetic CloudTrail | 12 | T1098.001 | `simulated` | Pending | v0.1.0 |
+| 100054 | Windows event 4728 | 14 | T1098 | `tested-private` | Pending | v0.1.0 |
+| 100055 | Windows event 4769 | 12 | T1558.003 | `tested-private` | Pending | v0.1.0 |
+| 100056 | Linux sudo/audit | 12 | T1611 | `tested-private` | Pending | v0.1.0 |
+| 100057 | Windows event 4625 correlation | 10 | T1110.001 | `tested-private` | Pending stateful fixtures | v0.1.0 |
+| 100058 | PowerShell event 4104 | 10 | T1059.001 | `tested-private` | Pending | v0.1.0 |
+| 100059 | Windows System event 7045 | 12 | T1543.003 | `tested-private` | Pending | v0.1.0 |
+| 100100 | SSH alert plus MISP result | 12 | Context only | `tested-private` | Pending integration audit | v0.2.0 |
 
-| Rule | Detection | Data source | MITRE ATT&CK | Private evidence | Public reproduction | v0.1.0 |
-|---:|---|---|---|---|---|---|
-| 100051 | High/medium-priority Suricata alert | Suricata EVE via pfSense Syslog | Signature-dependent; no universal mapping | Positive priority 1 and negative priority 3 | Pending decoder/fixture export | Optional |
-| 100052 | Windows event-log clearing | Windows Security events | T1070.001 | Positive validated; XML mapping verified | Pending sanitized positive/negative fixtures | Candidate |
-| 100053 | IAM access-key creation | Synthetic CloudTrail | T1098.001 | Positive synthetic event validated | Pending source and negative fixture export | Candidate |
-| 100054 | Domain Admins membership addition | Windows event 4728 | T1098 | Positive, negative, rollback, fresh indexing | Pending sanitized fixtures | Candidate |
-| 100055 | Successful RC4 service-ticket request heuristic | Windows event 4769 | T1558.003 | RC4 positive, AES negative, cleanup, fresh indexing | Pending sanitized fixtures | Candidate |
-| 100056 | Privileged Docker launch through audited sudo | Linux audit/sudo command | T1611 | Privileged positive, standard negative, cleanup, fresh indexing | Pending sanitized fixtures | Candidate |
-| 100100 | MISP match on suspicious SSH source | Wazuh alert plus MISP CTI | CTI context; no standalone behavioral mapping | End-to-end validated | Deferred to v0.2.0 | No |
+Every published detection must document prerequisites, expected decoder/rule/level, positive and negative cases, important fields, false positives, tuning, investigation, response, cleanup, supported Wazuh version, and evidence state.

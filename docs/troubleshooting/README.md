@@ -1,5 +1,3 @@
-# Troubleshooting Case Studies
+# Troubleshooting
 
-Public case studies will be rewritten from technical lessons using generic topology and synthetic identifiers. Private incident logs and raw evidence will not be copied.
-
-Candidate topics include indexer startup sequencing, historical indexing gaps, Suricata noise tuning, constrained Shuffle resources, and container-network overlap. Every case study must distinguish observed evidence, root cause, corrective action, validation, and prevention.
+See [known issues](known-issues.md) for sanitized cases from the private laboratory. Each case distinguishes symptoms, supported cause, correction, validation, and prevention. Private incident logs and raw evidence are not copied here.
