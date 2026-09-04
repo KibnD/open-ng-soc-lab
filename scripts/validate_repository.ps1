@@ -121,7 +121,7 @@ $patterns = [ordered]@{
 }
 
 foreach ($file in Get-ChildItem -LiteralPath $root -Recurse -File -Force) {
-    if ($file.FullName -match '\\(?:\.git|__pycache__|\.pytest_cache)\\') { continue }
+    if ($file.FullName -match '[\\/](?:\.git|__pycache__|\.pytest_cache)[\\/]') { continue }
     if ($forbidden -contains $file.Extension.ToLowerInvariant()) {
         $failures.Add("forbidden artifact type: $($file.FullName.Substring($root.Length + 1))")
         continue
